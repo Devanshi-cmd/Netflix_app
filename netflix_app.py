@@ -9,10 +9,10 @@ df['country'] = df['country'].fillna("Unknown")
 df['date_added'] = pd.to_datetime(df['date_added'], errors='coerce')
 df['year_added'] = df['date_added'].dt.year
 
-st.title("📺 Netflix Content Explorer")
+st.title(" Netflix Content Explorer")
 
 # Sidebar filters
-st.sidebar.header("🎛️ Filters")
+st.sidebar.header("Filters")
 
 genre = st.sidebar.text_input("Search by Genre (e.g., comedy, drama):").lower()
 country = st.sidebar.selectbox("Select Country", sorted(df['country'].dropna().unique()))
@@ -28,7 +28,7 @@ st.subheader(f"Total Results: {len(filtered_df)}")
 st.dataframe(filtered_df[['title', 'type', 'listed_in', 'country', 'release_year']])
 
 # Bar plot: Type distribution
-st.subheader("📊 Movie vs TV Show Distribution")
+st.subheader(" Movie vs TV Show Distribution")
 type_counts = filtered_df['type'].value_counts()
 fig, ax = plt.subplots()
 type_counts.plot(kind='bar', ax=ax, color=['red', 'blue'])
@@ -51,7 +51,7 @@ if title_search:
 
 # Optional: Year-wise trend
 if 'year_added' in filtered_df.columns:
-    st.subheader("📅 Content Added Over Years")
+    st.subheader("Content Added Over Years")
     year_trend = filtered_df['year_added'].value_counts().sort_index()
     fig2, ax2 = plt.subplots()
     year_trend.plot(kind='line', ax=ax2)
